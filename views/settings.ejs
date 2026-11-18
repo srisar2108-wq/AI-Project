@@ -29,7 +29,8 @@
   </header>
   
   <div class="container">
-    <form id="settingsForm" action="http://localhost:8080/update-settings" method="POST">
+    <!--<form id="settingsForm" action="http://localhost:8080/update-settings" method="POST">-->
+    <form id="settingsForm" action="/update-settings" method="POST">
       <b><h3>UPDATE YOUR INFORMATION</h3></b>
       <label for="username">USERNAME</label>
       <input type="text" id="username" name="username" value="<%= user.username %>" readonly>
