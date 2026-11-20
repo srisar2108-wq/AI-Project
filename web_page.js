@@ -16,13 +16,16 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-3.5-flash-lite' });
+const model = genAI.getGenerativeModel({ model: 'gemini-3.5-flash-lite', systemInstruction: 'You are a friendly, natural conversation partner. Keep replies short, usually one to three sentences, and talk like a person in a chat, not like a document. Ask a brief follow-up question when it helps the conversation move on. Use plain language. For questions about current weather, news, prices, or events, use Google Search and give the answer conversationally, mentioning the date when it matters.'});
 
 app.use((req, res, next) => { res.set('Cache-Control', 'no-store'); next(); });
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
+//app.use(express.json());
+
+app.use(express.json({ limit: '10mb' }));
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -32,7 +35,7 @@ app.use(session({
 const filePath = path.join(__dirname, 'Excel', 'Create_Account.xlsx');
 //const filePath = 'C:/Users/SRI_SAR/project/Excel/Create_Account.xlsx';
 
-async function generateParagraph(prompt) {
+/*async function generateParagraph(prompt) {
   try {
     const result = await model.generateContent([prompt]);
     //console.log('API response:', JSON.stringify(result, null, 2));
@@ -45,7 +48,8 @@ async function generateParagraph(prompt) {
     console.error('Error generating paragraph:', error);
     return 'Sorry, an error occurred while generating the paragraph.';
   }
-}
+}*/
+
 
 app.get('/Home_Page.html', (req, res) => {
   const user = req.session.user || null;
@@ -139,7 +143,7 @@ app.get('/logout', (req, res) => {
   });
 });
 
-app.post('/generate', async (req, res) => {
+/*app.post('/generate', async (req, res) => {
   const { prompt, username, email, phone, streetaddress, suburb, state, postcode, country } = req.body;
   const generatedParagraph = await generateParagraph(prompt);
   const user = {
@@ -155,7 +159,7 @@ app.post('/generate', async (req, res) => {
     generatedParagraph,
     prompt
   });
-});
+});*/
 
 app.post('/clear-message', (req, res) => {
   req.session.message = null;
@@ -205,6 +209,58 @@ app.post('/update-settings', ensureAuthenticated, (req, res) => {
   res.redirect('/account');
 });
 
+app.post('/chat', async (req, res) => {
+  
+  const message = (req.body.message || '').trim();
+  if (!message) {
+    return res.status(400).json({ reply: 'Please type a message.' });
+  }
+
+  if (!req.session.chatHistory) req.session.chatHistory = [];
+
+  try {
+    const chat = model.startChat({ history: req.session.chatHistory });
+    const result = await chat.sendMessage(message);
+    const reply = result.response.text();
+
+    req.session.chatHistory.push(
+      { role: 'user', parts: [{ text: message }] },
+      { role: 'model', parts: [{ text: reply }] }
+    );
+    req.session.chatHistory = req.session.chatHistory.slice(-20);
+
+    res.json({ reply });
+  } catch (err) {
+    console.error('Chat error:', err);
+    res.status(500).json({ reply: 'Sorry, something went wrong. Please try again.' });
+  }
+});
+
+app.post('/chat/reset', (req, res) => {
+  req.session.chatHistory = [];
+  res.sendStatus(200);
+});
+
+/*app.post('/chat-image', async (req, res) => {
+  const message = (req.body.message || '').trim() || 'Describe this image.';
+  const image = req.body.image || '';
+
+  const match = /^data:(image\/[a-z+]+);base64,(.+)$/i.exec(image);
+  if (!match) {
+    return res.status(400).json({ reply: 'Please choose a valid image (JPG, PNG, or WebP).' });
+  }
+
+  try {
+    const result = await model.generateContent([
+      { inlineData: { mimeType: match[1], data: match[2] } },
+      message
+    ]);
+    res.json({ reply: result.response.text() });
+  } catch (err) {
+    console.error('Image chat error:', err);
+    res.status(500).json({ reply: 'Sorry, the image could not be analysed. Please try again.' });
+  }
+});*/
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
