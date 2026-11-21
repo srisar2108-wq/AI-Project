@@ -42,9 +42,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 15px;
+  padding: 20px clamp(16px, 3vw, 40px);
 }
 
 .navbar .logo a {
