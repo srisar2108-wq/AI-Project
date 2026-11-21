@@ -10,7 +10,15 @@
     <!-- PASTE YOUR ORIGINAL <link rel="icon" ...> LINE HERE -->
     <link rel="stylesheet" href="account_style.css">
     <style>
-      .chat-frame { width: 100%; max-width: 1100px; height: 680px; border: none; display: block; margin: 20px auto; border-radius: 12px; }
+     .chat-frame {
+  width: 100%;
+  max-width: 1100px;
+  height: min(680px, 80vh);
+  border: none;
+  display: block;
+  margin: 20px auto;
+  border-radius: 12px;
+}
 
       .logo.brand { display: flex; align-items: center; gap: 10px; margin: 0; }
       .brand-spark { width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle, #fff 0%, #ffd166 40%, transparent 70%); box-shadow: 0 0 12px #ffd166; animation: pulse 2s ease-in-out infinite; }
