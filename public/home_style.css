@@ -370,3 +370,11 @@ html {
     display: none;
   }
 }
+.navbar .logo {
+  margin-right: auto;
+}
+
+.navbar .logo a,
+.navbar .logo h2 {
+  white-space: nowrap;
+}
