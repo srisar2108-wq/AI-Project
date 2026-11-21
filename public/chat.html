@@ -53,6 +53,51 @@
     @media (max-width: 700px) {
       .sidebar { width: 200px; }
     }
+    html, body { min-height: 100%; }
+
+body {
+  background: linear-gradient(-45deg, #1b1f4b, #3b1f5c, #0f3d4c, #1e2a6b);
+  background-size: 400% 400%;
+  animation: bgShift 16s ease infinite;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before, body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  z-index: -1;
+  pointer-events: none;
+}
+body::before {
+  width: 320px; height: 320px;
+  background: #ff7eb6;
+  top: 10%; left: 5%;
+  animation: floatA 12s ease-in-out infinite;
+}
+body::after {
+  width: 260px; height: 260px;
+  background: #7ec8ff;
+  bottom: 8%; right: 6%;
+  animation: floatB 14s ease-in-out infinite;
+}
+
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes floatA {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(60px, 40px); }
+}
+@keyframes floatB {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-50px, -30px); }
+}
   </style>
 </head>
 <body>
@@ -72,8 +117,7 @@
     </aside>
 
     <main class="main">
-      <div class="main-header" id="chatTitle">Chat with Gemini</div>
-      <div id="messages"></div>
+<div class="main-header"><span class="brand-spark"></span><span class="brand-text">Friendly <em>AI</em></span></div>
       <form id="chatForm">
         <textarea id="input" rows="2" placeholder="Type a message... (Enter to send, Shift+Enter for a new line)"></textarea>
         <button id="send" type="submit">Send</button>

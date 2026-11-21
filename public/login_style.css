@@ -15,11 +15,48 @@ body {
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background: linear-gradient(to bottom, #215b9e 23%, #330c43 95%);
-  background-repeat: no-repeat;
-  background-size: cover; /* Ensure background covers the entire viewport */
-  backdrop-filter: blur(10px); 
+  background: linear-gradient(-45deg, #1b1f4b, #3b1f5c, #0f3d4c, #1e2a6b);
+  background-size: 400% 400%;
+  animation: bgShift 16s ease infinite;
+  position: relative;
+  overflow: hidden;
   color: #fff;
+}
+
+body::before, body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  z-index: -1;
+  pointer-events: none;
+}
+body::before {
+  width: 320px; height: 320px;
+  background: #ff7eb6;
+  top: 10%; left: 5%;
+  animation: floatA 12s ease-in-out infinite;
+}
+body::after {
+  width: 260px; height: 260px;
+  background: #7ec8ff;
+  bottom: 8%; right: 6%;
+  animation: floatB 14s ease-in-out infinite;
+}
+
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes floatA {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(60px, 40px); }
+}
+@keyframes floatB {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-50px, -30px); }
 }
 
 .container {

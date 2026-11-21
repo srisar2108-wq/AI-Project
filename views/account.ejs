@@ -1,247 +1,3 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-  
-    <meta charset="UTF-8">
-    <title>Account Page</title>
-    <link rel="icon" href="data:image/jpeg;base64,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" type="image/png">
-    <link rel="stylesheet" href="account_style.css">
-</head>
-<body>
-    <header class="header">
-        <nav class="navbar">
-          <h2 class="logo"><a>AI GENERATOR</a></h2>
-          <div class="buttons">
-            <div class="dropdown"> 
-            <h3 class ="hi"><b>Welcome,<a href="#"><b><i><%= user.username %></i></b></a></b></h3>
-            <div class="dropdown-content">
-              <a href="Home_Page.html">Home</a>
-              <a href="/settings">Settings</a>
-              <a href="/" id="about-us-link">About Us</a>
-              <a href="/" id="contact-us-link">Contact Us</a></a>
-              <a href="/logout">Logout</a>
-            </div>
-            <% if (message) { %> 
-              <div id="message" class="message"><%= message %></div> 
-            <% } %>
-        </div>
-        </nav>
-    </header>
-    
-    <div class="account-details">
-        <p><strong>Email:</strong> <%= user.email %></p>
-        <p><strong>Phone:</strong> <%= user.phone %></p>
-        <p><strong>Address:</strong> <%= user.address %></p>
-    </div>
-     Paragraph generation form -->
-    <!--<div class="paragraph-generator">
-      <h2>Generate a Paragraph</h2>
-      <form action="/generate" method="post">
-        <input type="hidden" name="username" value="<%= user.username %>"> 
-        <input type="hidden" name="email" value="<%= user.email %>"> 
-        <input type="hidden" name="phone" value="<%= user.phone %>"> 
-        <% if (user.address) { %>
-          <input type="hidden" name="streetaddress" value="<%= user.address.split(', ')[0] %>">
-          <input type="hidden" name="suburb" value="<%= user.address.split(', ')[1] %>">
-          <input type="hidden" name="state" value="<%= user.address.split(', ')[2] %>">
-          <input type="hidden" name="postcode" value="<%= user.address.split(', ')[3] %>">
-          <input type="hidden" name="country" value="<%= user.address.split(', ')[4] %>">
-      <% } else { %>
-          <input type="hidden" name="streetaddress" value="">
-          <input type="hidden" name="suburb" value="">
-          <input type="hidden" name="state" value="">
-          <input type="hidden" name="postcode" value="">
-          <input type="hidden" name="country" value="">
-      <% } %>
-      
-          <label for="prompt">Write About:</label>
-          <p><textarea id="prompt" name="prompt" data-max-words="100" rows="5" style="width:50%" data-announce="true"required><%= prompt %></textarea></p><br>
-          <span class="count" id="promptWordCount">0 words</span>
-          <span class="count" id="promptCharCount">0 characters</span><br>
-          <button type="submit" class="submit-button">Generate Paragraph</button>
-          <button type="button" class="clear-button" id="clearButton">Clear Text</button>
-          
-      </form>
-      <% if (generatedParagraph) { %>
-          <div class="generated-paragraph">
-              <h3>Generated Paragraph:</h3>
-              <p><textarea id="generatedParagraph" rows="10" style="width:80%;" data-announce="true" readonly><%= generatedParagraph %></textarea></p>
-              <span class="count" id="generatedWordCount">0 words</span>
-                <span class="count" id="generatedCharCount">0 characters</span>
-
-          </div>
-      <% } %>
-  </div>
- 
-    <div class="about-content"  id="about-section" style="display: none;">
-      <h2>ABOUT US</h2>
-      <p>
-        Welcome to AI GENERATOR, your cutting-edge companion in the world of artificial intelligence.
-           Utilizing advanced server-side programming along with seamless HTML, CSS, and scripting 
-           language integration, AI GENERATOR offers a robust and dynamic platform designed to 
-           meet your needs. Whether you're exploring AI for personal use, education, or professional
-            development, It is engineered to provide an intuitive and interactive experience. 
-            Join us in the future of technology, where innovation and intelligence converge.
-      </p>
-    </div>
-
-    <div class="contact-content" id="contact-us-section" style="display: none;">
-      <h2>CONTACT US</h2>
-      <ul>
-        <p><i><u><li>Email : abcxyz@outlook.com</li>
-        <li>PhNo  : +61412345678</li>
-        <li><a href="/" id="faqs-link" style="color: white;">Do you have any Questions(FAQs)?click here</a></li></u></i></p>
-      </ul>
-    </div>
- 
-
-    <div class="faqs-content"  id="faqs-section" style="display: none;">
-      <h2>Frequently Asked Questions (FAQs)</h2>
-      <ul>
-        <li><strong>What is AI GENERATOR?</strong>
-          <p>AI GENERATOR is an advanced platform that utilizes cutting-edge algorithms and neural networks to process and analyze vast amounts of data efficiently and accurately.</p>
-        </li>
-        <li><strong>How can I create an account?</strong>
-          <p>Creating an account is easy! Simply click on the "Sign Up" or "Join Now" button on our homepage, fill in the required details, and follow the instructions to complete your registration.</p>
-        </li>
-        <li><strong>What services do you offer?</strong>
-          <p>We offer a range of AI-based services including data analysis, predictive modeling, and custom AI solutions tailored to your specific needs. Explore our services page for more detailed information.</p>
-        </li>
-        <li><strong>Is my data secure with AI GENERATOR?</strong>
-          <p>Absolutely! We prioritize the security and privacy of your data. Our platform uses state-of-the-art encryption and security protocols to ensure that your information is safe and protected.</p>
-        </li>
-        <li><strong>Can I request a custom AI solution?</strong>
-          <p>Of course! We specialize in creating custom AI solutions tailored to your unique requirements. Contact us to discuss your needs and we'll be happy to assist you.</p>
-        </li>
-      </ul>
-    </div>
-
-
-<script>
-    window.onload = function() { 
-      // Display message and hide after a few seconds 
-        var message = document.getElementById('message'); 
-        if (message) {
-          message.style.display = 'block'; 
-          setTimeout(function() {
-          message.style.opacity = '0'; 
-          setTimeout(function() { 
-            message.style.display = 'none'; 
-            // Clear the message after it's displayed 
-              fetch('/clear-message', {
-                 method: 'POST' 
-                }); 
-              }, 1000); 
-            }, 3000); 
-          } 
-        };
-
-        // Function to count words
-        function countWords(text) {
-            return text.trim().split(/\s+/).filter(word => word.length > 0).length;
-        }
-
-        // Function to count characters
-        function countChars(text) {
-            return text.length;
-        }
-
-        // Update word and character count for the prompt textarea
-        const promptTextarea = document.getElementById('prompt');
-        const promptWordCount = document.getElementById('promptWordCount');
-        const promptCharCount = document.getElementById('promptCharCount');
-        promptTextarea.addEventListener('input', () => {
-            const text = promptTextarea.value;
-            promptWordCount.textContent = `${countWords(text)} words`;
-            promptCharCount.textContent = `${countChars(text)} characters`;
-        });
-
-        // Clear button functionality
-        const clearButton = document.getElementById('clearButton');
-        clearButton.addEventListener('click', () => {
-            promptTextarea.value = '';
-            promptWordCount.textContent = '0 words';
-            promptCharCount.textContent = '0 characters';
-
-            const generatedTextarea = document.getElementById('generatedParagraph');
-            if (generatedTextarea) {
-                generatedTextarea.value = '';
-                const generatedWordCount = document.getElementById('generatedWordCount');
-                const generatedCharCount = document.getElementById('generatedCharCount');
-                generatedWordCount.textContent = '0 words';
-                generatedCharCount.textContent = '0 characters';
-            }
-        });
-
-
-
-        // Ensure the script runs after the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const generatedTextarea = document.getElementById('generatedParagraph');
-            if (generatedTextarea) {
-                const generatedWordCount = document.getElementById('generatedWordCount');
-                const generatedCharCount = document.getElementById('generatedCharCount');
-                const text = generatedTextarea.value;
-                generatedWordCount.textContent = `${countWords(text)} words`;
-                generatedCharCount.textContent = `${countChars(text)} characters`;
-            }
-            // Update counts for prompt textarea after form submission 
-            const text = promptTextarea.value; 
-            promptWordCount.textContent = `${countWords(text)} words`; 
-            promptCharCount.textContent = `${countChars(text)} characters`; 
-          });
-          
-      document.getElementById('about-us-link').addEventListener('click', function(event) {
-        event.preventDefault();
-        var aboutContent = document.getElementById('about-section');
-        var contactContent = document.getElementById('contact-us-section');
-        var faqsContent = document.getElementById('faqs-section');
-        contactContent.style.display = 'none'; // Hide contact section if it's open
-        faqsContent.style.display = 'none'; // Hide FAQs section if it's open
-        if (aboutContent.style.display === 'none' || aboutContent.style.display === '') {
-          aboutContent.style.display = 'block';
-          aboutContent.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          aboutContent.style.display = 'none';
-        }
-      });
-
-      document.getElementById('contact-us-link').addEventListener('click', function(event) {
-        event.preventDefault();
-        var contactContent = document.getElementById('contact-us-section');
-        var aboutContent = document.getElementById('about-section');
-        var faqsContent = document.getElementById('faqs-section');
-        aboutContent.style.display = 'none'; // Hide about section if it's open
-        faqsContent.style.display = 'none'; // Hide FAQs section if it's open
-        if (contactContent.style.display === 'none' || contactContent.style.display === '') {
-          contactContent.style.display = 'block';
-          contactContent.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          contactContent.style.display = 'none';
-        }
-      });
-
-      document.getElementById('faqs-link').addEventListener('click', function(event) {
-        event.preventDefault();
-        var faqsContent = document.getElementById('faqs-section');
-        var aboutContent = document.getElementById('about-section');
-        var contactContent = document.getElementById('contact-us-section');
-        aboutContent.style.display = 'none'; // Hide about section if it's open
-        contactContent.style.display = 'none'; // Hide contact section if it's open
-        if (faqsContent.style.display === 'none' || faqsContent.style.display === '') {
-          faqsContent.style.display = 'block';
-          faqsContent.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          faqsContent.style.display = 'none';
-        }
-      });
-</script>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -250,190 +6,193 @@
     <meta http-equiv="Expires" content="0" />
 
     <meta charset="UTF-8">
-    <title>Account Page</title>
-    PASTE YOUR ORIGINAL <link rel="icon" ...> LINE HERE 
-    <link rel="stylesheet" href="account_style.css">
-    <style>
-      .chat-box { max-width: 700px; margin: 20px auto; background: #1e1b2e; color: #fff; border-radius: 12px; overflow: hidden; font-family: Arial, sans-serif; }
-      .chat-header { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; background: #2a2640; }
-      #messages { height: 400px; overflow-y: auto; padding: 16px; }
-      .bubble { max-width: 80%; padding: 10px 14px; border-radius: 12px; margin: 8px 0; white-space: pre-wrap; line-height: 1.4; }
-      .bubble.user { background: #3b6fd8; margin-left: auto; }
-      .bubble.bot { background: #35304d; }
-      #chatForm { display: flex; gap: 8px; padding: 12px; background: #2a2640; }
-      #input { flex: 1; padding: 10px; border-radius: 8px; border: none; resize: none; font-size: 15px; }
-      .chat-box button { padding: 10px 16px; border: none; border-radius: 8px; background: #3b6fd8; color: #fff; cursor: pointer; }
-      .chat-box button:disabled { opacity: 0.5; }
-      #reset { background: #555; }
-    </style>
-</head>
-<body>
-    <header class="header">
-        <nav class="navbar">
-          <h2 class="logo"><a>AI GENERATOR</a></h2>
-          <div class="buttons">
-            <div class="dropdown">
-            <h3 class="hi"><b>Welcome,<a href="#"><b><i><%= user.username %></i></b></a></b></h3>
-            <div class="dropdown-content">
-              <a href="Home_Page.html">Home</a>
-              <a href="/settings">Settings</a>
-              <a href="/" id="about-us-link">About Us</a>
-              <a href="/" id="contact-us-link">Contact Us</a>
-              <a href="/logout">Logout</a>
-            </div>
-            <% if (message) { %>
-              <div id="message" class="message"><%= message %></div>
-            <% } %>
-        </div>
-        </nav>
-    </header>
-
-    <div class="account-details">
-        <p><strong>Email:</strong> <%= user.email %></p>
-        <p><strong>Phone:</strong> <%= user.phone %></p>
-        <p><strong>Address:</strong> <%= user.address %></p>
-    </div>
-
-    <!-- Chat box (replaces the paragraph generator)
-    <div class="chat-box">
-      <div class="chat-header">
-        <strong>Chat with Gemini</strong>
-        <button id="reset" type="button">New chat</button>
-      </div>
-      <div id="messages"></div>
-      <form id="chatForm">
-        <textarea id="input" rows="2" placeholder="Type a message... (Enter to send)"></textarea>
-        <button id="send" type="submit">Send</button>
-      </form>
-    </div>
-
-    <div class="about-content" id="about-section" style="display: none;">
-      <h2>ABOUT US</h2>
-      <p>
-        Welcome to AI GENERATOR, your cutting-edge companion in the world of artificial intelligence.
-        Utilizing advanced server-side programming along with seamless HTML, CSS, and scripting
-        language integration, AI GENERATOR offers a robust and dynamic platform designed to
-        meet your needs. Whether you're exploring AI for personal use, education, or professional
-        development, It is engineered to provide an intuitive and interactive experience.
-        Join us in the future of technology, where innovation and intelligence converge.
-      </p>
-    </div>
-
-    <div class="contact-content" id="contact-us-section" style="display: none;">
-      <h2>CONTACT US</h2>
-      <ul>
-        <p><i><u><li>Email : abcxyz@outlook.com</li>
-        <li>PhNo  : +61412345678</li>
-        <li><a href="/" id="faqs-link" style="color: white;">Do you have any Questions(FAQs)?click here</a></li></u></i></p>
-      </ul>
-    </div>
-
-    <div class="faqs-content" id="faqs-section" style="display: none;">
-      <h2>Frequently Asked Questions (FAQs)</h2>
-      <ul>
-        <li><strong>What is AI GENERATOR?</strong>
-          <p>AI GENERATOR is an advanced platform that utilizes cutting-edge algorithms and neural networks to process and analyze vast amounts of data efficiently and accurately.</p>
-        </li>
-        <li><strong>How can I create an account?</strong>
-          <p>Creating an account is easy! Simply click on the "Sign Up" or "Join Now" button on our homepage, fill in the required details, and follow the instructions to complete your registration.</p>
-        </li>
-        <li><strong>What services do you offer?</strong>
-          <p>We offer a range of AI-based services including data analysis, predictive modeling, and custom AI solutions tailored to your specific needs. Explore our services page for more detailed information.</p>
-        </li>
-        <li><strong>Is my data secure with AI GENERATOR?</strong>
-          <p>Absolutely! We prioritize the security and privacy of your data. Our platform uses state-of-the-art encryption and security protocols to ensure that your information is safe and protected.</p>
-        </li>
-        <li><strong>Can I request a custom AI solution?</strong>
-          <p>Of course! We specialize in creating custom AI solutions tailored to your unique requirements. Contact us to discuss your needs and we'll be happy to assist you.</p>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Chat logic 
-    <script src="/chat.js"></script>
-
-    <script>
-      window.onload = function () {
-        // Display message and hide after a few seconds
-        var message = document.getElementById('message');
-        if (message) {
-          message.style.display = 'block';
-          setTimeout(function () {
-            message.style.opacity = '0';
-            setTimeout(function () {
-              message.style.display = 'none';
-              fetch('/clear-message', { method: 'POST' });
-            }, 1000);
-          }, 3000);
-        }
-      };
-
-      document.getElementById('about-us-link').addEventListener('click', function (event) {
-        event.preventDefault();
-        var aboutContent = document.getElementById('about-section');
-        var contactContent = document.getElementById('contact-us-section');
-        var faqsContent = document.getElementById('faqs-section');
-        contactContent.style.display = 'none';
-        faqsContent.style.display = 'none';
-        if (aboutContent.style.display === 'none' || aboutContent.style.display === '') {
-          aboutContent.style.display = 'block';
-          aboutContent.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          aboutContent.style.display = 'none';
-        }
-      });
-
-      document.getElementById('contact-us-link').addEventListener('click', function (event) {
-        event.preventDefault();
-        var contactContent = document.getElementById('contact-us-section');
-        var aboutContent = document.getElementById('about-section');
-        var faqsContent = document.getElementById('faqs-section');
-        aboutContent.style.display = 'none';
-        faqsContent.style.display = 'none';
-        if (contactContent.style.display === 'none' || contactContent.style.display === '') {
-          contactContent.style.display = 'block';
-          contactContent.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          contactContent.style.display = 'none';
-        }
-      });
-
-      document.getElementById('faqs-link').addEventListener('click', function (event) {
-        event.preventDefault();
-        var faqsContent = document.getElementById('faqs-section');
-        var aboutContent = document.getElementById('about-section');
-        var contactContent = document.getElementById('contact-us-section');
-        aboutContent.style.display = 'none';
-        contactContent.style.display = 'none';
-        if (faqsContent.style.display === 'none' || faqsContent.style.display === '') {
-          faqsContent.style.display = 'block';
-          faqsContent.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          faqsContent.style.display = 'none';
-        }
-      });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-
-    <meta charset="UTF-8">
-    <title>Account Page</title>
+    <title>Friendly AI</title>
     <!-- PASTE YOUR ORIGINAL <link rel="icon" ...> LINE HERE -->
     <link rel="stylesheet" href="account_style.css">
     <style>
       .chat-frame { width: 100%; max-width: 1100px; height: 680px; border: none; display: block; margin: 20px auto; border-radius: 12px; }
+
+      .logo.brand { display: flex; align-items: center; gap: 10px; margin: 0; }
+      .brand-spark { width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle, #fff 0%, #ffd166 40%, transparent 70%); box-shadow: 0 0 12px #ffd166; animation: pulse 2s ease-in-out infinite; }
+      .brand-text { font-family: 'Trebuchet MS', Arial, sans-serif; font-size: 28px; font-weight: 800; letter-spacing: 1px; background: linear-gradient(90deg, #ffd166, #ff7eb6, #7ec8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .brand-text em { font-style: normal; font-weight: 300; letter-spacing: 3px; }
+      @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.6; } }
+
+      html, body { min-height: 100%; overflow-x: hidden; }
+
+      body {
+        background: linear-gradient(-45deg, #1b1f4b, #3b1f5c, #0f3d4c, #1e2a6b);
+        background-size: 600% 600%;
+        animation: bgShift 24s ease infinite;
+        position: relative;
+      }
+
+      body::before, body::after {
+        content: '';
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.35;
+        z-index: -1;
+        pointer-events: none;
+      }
+      body::before {
+        width: 480px; height: 480px;
+        background: #ff7eb6;
+        top: 10%; left: 5%;
+        animation: floatA 12s ease-in-out infinite;
+      }
+      body::after {
+        width: 260px; height: 260px;
+        background: #7ec8ff;
+        bottom: 8%; right: 6%;
+        animation: floatB 14s ease-in-out infinite;
+      }
+
+      @keyframes bgShift {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes floatA {
+        0%, 100% { transform: translate(0, 0); }
+        50%      { transform: translate(60px, 40px); }
+      }
+      @keyframes floatB {
+        0%, 100% { transform: translate(0, 0); }
+        50%      { transform: translate(-50px, -30px); }
+      }
+
+      /* ---------- About card ---------- */
+      #about-section {
+        max-width: 820px;
+        margin: 40px auto;
+        padding: 36px 40px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        color: #f1efff;
+        line-height: 1.7;
+      }
+      #about-section h2 {
+        margin: 0 0 18px;
+        font-size: 30px;
+        font-weight: 800;
+        background: linear-gradient(90deg, #ffd166, #ff7eb6, #7ec8ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      #about-section p {
+        margin: 0 0 14px;
+        font-size: 17px;
+        color: #e6e3ff;
+      }
+      #about-section p:last-child {
+        margin-bottom: 0;
+        font-style: italic;
+        color: #ffd9ec;
+      }
+
+      /* ---------- FAQ card ---------- */
+      #faqs-section {
+        max-width: 820px;
+        margin: 40px auto;
+        padding: 36px 40px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(10px);
+        color: #f1efff;
+        line-height: 1.6;
+      }
+      #faqs-section h2 {
+        margin: 0 0 22px;
+        font-size: 28px;
+        font-weight: 800;
+        text-align: center;
+        background: linear-gradient(90deg, #ffd166, #ff7eb6, #7ec8ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      #faqs-section ul { list-style: none; padding: 0; margin: 0; }
+      #faqs-section li {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      #faqs-section li:last-child { border-bottom: none; }
+      #faqs-section li strong {
+        display: block;
+        font-size: 18px;
+        color: #ffd166;
+        margin-bottom: 6px;
+      }
+      #faqs-section li p {
+        margin: 0;
+        font-size: 16px;
+        color: #e6e3ff;
+      }
+
+      /* ---------- Footer: hidden until Contact Us is clicked ---------- */
+      .site-footer {
+        display: none;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        padding: 8px 5vw;
+        background: linear-gradient(90deg, rgba(20, 24, 60, 0.95), rgba(45, 25, 80, 0.95));
+        border-top: 2px solid #ffd166;
+        text-align: center;
+        color: #e8e6ff;
+      }
+      .site-footer.show { display: block; }
+      .site-footer h2 {
+        margin: 0 0 6px;
+        font-size: 16px;
+        color: #ffd166;
+        letter-spacing: 1px;
+      }
+      .contact-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        width: 100%;
+      }
+      .contact-row span,
+      .contact-row a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 8px;
+        border-radius: 8px;
+        background: rgba(126, 200, 255, 0.12);
+        border: 1px solid rgba(126, 200, 255, 0.25);
+        color: #e8e6ff;
+        text-decoration: underline;
+        font-size: 13px;
+      }
+      .contact-row a:hover {
+        background: rgba(255, 126, 182, 0.25);
+        border-color: #ff7eb6;
+        color: #fff;
+      }
+
+      @media (max-width: 700px) {
+        .contact-row { grid-template-columns: 1fr; }
+        #about-section, #faqs-section { margin: 24px 16px; padding: 24px 20px; }
+        #about-section h2 { font-size: 24px; }
+        #faqs-section h2 { font-size: 22px; }
+      }
     </style>
 </head>
 <body>
     <header class="header">
         <nav class="navbar">
-          <h2 class="logo"><a>AI GENERATOR</a></h2>
+          <h2 class="logo brand"><span class="brand-spark"></span><span class="brand-text">Friendly <em>AI</em></span></h2>
           <div class="buttons">
             <div class="dropdown">
             <h3 class="hi"><b>Welcome,<a href="#"><b><i><%= user.username %></i></b></a></b></h3>
@@ -441,8 +200,8 @@
               <a href="Home_Page.html">Home</a>
               <a href="#" id="account-info-link">Account info</a>
               <a href="/settings">Settings</a>
-              <a href="/" id="about-us-link">About Us</a>
-              <a href="/" id="contact-us-link">Contact Us</a>
+              <a href="#" id="about-us-link">About Us</a>
+              <a href="#" id="contact-us-link">Contact Us</a>
               <a href="/logout">Logout</a>
             </div>
             <% if (message) { %>
@@ -459,49 +218,51 @@
     </div>
 
     <!-- Chat with Gemini: the full chat page is loaded here -->
-    <iframe class="chat-frame" src="/chat.html" title="Chat with Gemini"></iframe>
+    <iframe class="chat-frame" src="/chat.html" title="Chat with Friendly AI"></iframe>
 
     <div class="about-content" id="about-section" style="display: none;">
-      <h2>ABOUT US</h2>
+      <h2>🌈 About Friendly AI</h2>
       <p>
-        Welcome to AI GENERATOR, your cutting-edge companion in the world of artificial intelligence.
-        Utilizing advanced server-side programming along with seamless HTML, CSS, and scripting
-        language integration, AI GENERATOR offers a robust and dynamic platform designed to
-        meet your needs. Whether you're exploring AI for personal use, education, or professional
-        development, It is engineered to provide an intuitive and interactive experience.
-        Join us in the future of technology, where innovation and intelligence converge.
+        Friendly AI is a warm, easy-to-use chat assistant. You can ask it anything, from everyday
+        questions and planning your day to writing, learning, and checking the latest news or weather.
+        It replies in plain, friendly language, and it remembers your conversations so you can pick up
+        where you left off.
       </p>
-    </div>
-
-    <div class="contact-content" id="contact-us-section" style="display: none;">
-      <h2>CONTACT US</h2>
-      <ul>
-        <p><i><u><li>Email : abcxyz@outlook.com</li>
-        <li>PhNo  : +61412345678</li>
-        <li><a href="/" id="faqs-link" style="color: white;">Do you have any Questions(FAQs)?click here</a></li></u></i></p>
-      </ul>
+      <p>
+        We built Friendly AI to make artificial intelligence feel approachable. You don't need technical
+        skills to start. Just type your question, and you're chatting.
+      </p>
     </div>
 
     <div class="faqs-content" id="faqs-section" style="display: none;">
       <h2>Frequently Asked Questions (FAQs)</h2>
       <ul>
-        <li><strong>What is AI GENERATOR?</strong>
-          <p>AI GENERATOR is an advanced platform that utilizes cutting-edge algorithms and neural networks to process and analyze vast amounts of data efficiently and accurately.</p>
+        <li><strong>What is Friendly AI?</strong>
+          <p>Friendly AI is a chat assistant that answers questions, helps you plan, and explains things in plain language.</p>
         </li>
         <li><strong>How can I create an account?</strong>
-          <p>Creating an account is easy! Simply click on the "Sign Up" or "Join Now" button on our homepage, fill in the required details, and follow the instructions to complete your registration.</p>
+          <p>Click "Join Now" or "Sign in", fill in the required details, and follow the instructions to complete your registration.</p>
         </li>
         <li><strong>What services do you offer?</strong>
-          <p>We offer a range of AI-based services including data analysis, predictive modeling, and custom AI solutions tailored to your specific needs. Explore our services page for more detailed information.</p>
+          <p>Chat conversations with live search for weather, news, and prices, plus projects to organise your chats.</p>
         </li>
-        <li><strong>Is my data secure with AI GENERATOR?</strong>
-          <p>Absolutely! We prioritize the security and privacy of your data. Our platform uses state-of-the-art encryption and security protocols to ensure that your information is safe and protected.</p>
+        <li><strong>Is my data secure?</strong>
+          <p>We keep your details private and only use them to run your account. Please keep your password safe.</p>
         </li>
         <li><strong>Can I request a custom AI solution?</strong>
-          <p>Of course! We specialize in creating custom AI solutions tailored to your unique requirements. Contact us to discuss your needs and we'll be happy to assist you.</p>
+          <p>Of course! Contact us using the details in the Contact Us section.</p>
         </li>
       </ul>
     </div>
+
+    <footer id="contact-section" class="site-footer">
+      <h2>Contact Us</h2>
+      <div class="contact-row">
+        <span>📧 abcxyz@outlook.com</span>
+        <span>📞 +61412345678</span>
+        <a href="#" id="faqs-link">❓ Do you have any questions? Click here</a>
+      </div>
+    </footer>
 
     <script>
       window.onload = function () {
@@ -522,10 +283,8 @@
       document.getElementById('about-us-link').addEventListener('click', function (event) {
         event.preventDefault();
         var aboutContent = document.getElementById('about-section');
-        var contactContent = document.getElementById('contact-us-section');
-        var faqsContent = document.getElementById('faqs-section');
-        contactContent.style.display = 'none';
-        faqsContent.style.display = 'none';
+        document.getElementById('contact-section').classList.remove('show');
+        document.getElementById('faqs-section').style.display = 'none';
         if (aboutContent.style.display === 'none' || aboutContent.style.display === '') {
           aboutContent.style.display = 'block';
           aboutContent.scrollIntoView({ behavior: 'smooth' });
@@ -536,26 +295,19 @@
 
       document.getElementById('contact-us-link').addEventListener('click', function (event) {
         event.preventDefault();
-        var contactContent = document.getElementById('contact-us-section');
-        var aboutContent = document.getElementById('about-section');
-        var faqsContent = document.getElementById('faqs-section');
-        aboutContent.style.display = 'none';
-        faqsContent.style.display = 'none';
-        if (contactContent.style.display === 'none' || contactContent.style.display === '') {
-          contactContent.style.display = 'block';
-          contactContent.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          contactContent.style.display = 'none';
+        var footer = document.getElementById('contact-section');
+        document.getElementById('about-section').style.display = 'none';
+        document.getElementById('faqs-section').style.display = 'none';
+        footer.classList.toggle('show');
+        if (footer.classList.contains('show')) {
+          footer.scrollIntoView({ behavior: 'smooth' });
         }
       });
 
       document.getElementById('faqs-link').addEventListener('click', function (event) {
         event.preventDefault();
         var faqsContent = document.getElementById('faqs-section');
-        var aboutContent = document.getElementById('about-section');
-        var contactContent = document.getElementById('contact-us-section');
-        aboutContent.style.display = 'none';
-        contactContent.style.display = 'none';
+        document.getElementById('about-section').style.display = 'none';
         if (faqsContent.style.display === 'none' || faqsContent.style.display === '') {
           faqsContent.style.display = 'block';
           faqsContent.scrollIntoView({ behavior: 'smooth' });
@@ -563,6 +315,7 @@
           faqsContent.style.display = 'none';
         }
       });
+
       document.getElementById('account-info-link').addEventListener('click', function (event) {
         event.preventDefault();
         var details = document.getElementById('accountDetails');

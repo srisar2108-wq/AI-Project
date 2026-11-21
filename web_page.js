@@ -267,4 +267,3 @@ app.use('/api', require('./chat_routes'));
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-
