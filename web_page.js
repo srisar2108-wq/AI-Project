@@ -208,7 +208,7 @@ app.post('/update-settings', ensureAuthenticated, (req, res) => {
 
   res.redirect('/account');
 });
-
+/*
 app.post('/chat', async (req, res) => {
   
   const message = (req.body.message || '').trim();
@@ -261,6 +261,8 @@ app.post('/chat/reset', (req, res) => {
     res.status(500).json({ reply: 'Sorry, the image could not be analysed. Please try again.' });
   }
 });*/
+
+app.use('/api', require('./chat_routes'));
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
