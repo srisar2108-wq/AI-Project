@@ -398,6 +398,20 @@
 @media (max-width: 1100px) {
   .side-tree { display: none; }
 }
+.greeting {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffd166;
+  letter-spacing: 0.5px;
+  animation: greetIn 1s ease both;
+}
+
+@keyframes greetIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
     </style>
   </head>
   <body>
@@ -442,7 +456,14 @@
         <h2>💬 Idea Friend 🤝</h2>
         <p class="animated-desc">Friendly AI is an easy, warm way to chat, get ideas, and find answers, any time you need them.</p>
         <div class="buttons">
-          <a href="Create_Account.html" class="join">Join Now</a>
+          <% if (user && user.username) { %>
+  <p class="greeting">Hey <%= user.username %>, what's on your mind today? 🧠</p>
+  <div class="greeting-actions">
+    <a href="/chat.html" class="join">Start chatting</a>
+  </div>
+<% } else { %>
+  <a href="Create_Account.html" class="join">Join Now</a>
+<% } %>
         </div>
       </div>
     </section>
