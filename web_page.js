@@ -56,6 +56,11 @@ app.get('/Home_Page.html', (req, res) => {
   res.render('home_page', { user });
 });
 
+app.get('/', (req, res) => {
+  const user = req.session.user || null;
+  res.render('home_page', { user });
+});
+
 app.post('/register', (req, res) => {
   try {
     const { prompt, username, email, phone, streetaddress, suburb, state, postcode, country, password } = req.body;
