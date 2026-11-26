@@ -120,13 +120,21 @@ router.post('/chats/:id/message', async (req, res) => {
   }
 
   try {
-    const chatSession = model.startChat({ history: [...chat.messages] }); // copy, so the SDK doesn't add to chat.messages
+   const history = chat.messages.map(msg => ({
+  role: msg.role,
+  parts: msg.parts
+}));
+
+const chatSession = model.startChat({
+  history
+});
+// copy, so the SDK doesn't add to chat.messages
     const result = await chatSession.sendMessage(message);
     const reply = result.response.text();
 
     chat.messages.push(
-      { role: 'user', parts: [{ text: message }] },
-      { role: 'model', parts: [{ text: reply }] }
+      { role: 'user', parts: [{ text: message }], reactions: []},
+      { role: 'model', parts: [{ text: reply }], reactions : []}
     );
     chat.messages = chat.messages.slice(-40);
 
@@ -209,6 +217,41 @@ router.delete('/projects/:id', (req, res) => {
   });
 
   res.json({ ok: true });
+});
+
+// Add emoji reaction to a message
+router.post('/chats/:chatId/react/:messageIndex', (req, res) => {
+   console.log('REACTION ROUTE HIT');
+  const { chatId, messageIndex } = req.params;
+  const { emoji } = req.body;
+  console.log(chatId);
+  console.log(messageIndex);
+  console.log(emoji);
+  const file = chatFile(req, chatId);
+
+  if (!fs.existsSync(file)) {
+    return res.status(404).json({ error: 'Chat not found.' });
+  }
+
+  const chat = readChat(file);
+
+  const msg = chat.messages[Number(messageIndex)];
+
+  if (!msg) {
+    return res.status(404).json({ error: 'Message not found.' });
+  }
+
+  if (!msg.reactions) {
+    msg.reactions = [];
+  }
+
+  msg.reactions.push(emoji);
+
+  writeChat(file, chat);
+
+  res.json({
+    reactions: msg.reactions
+  });
 });
 
 module.exports = router;

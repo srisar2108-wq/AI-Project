@@ -16,11 +16,65 @@ let collapsed = new Set(); // project IDs that are folded up
 let sending = false;       // blocks a second send while a reply is pending
 
 // ---------- Helpers ----------
-function addBubble(text, who) {
-  const div = document.createElement('div');
-  div.className = 'bubble ' + who;
-  div.textContent = text; // textContent keeps replies safe from HTML injection
-  messages.appendChild(div);
+function addBubble(text, who, index = null, reactions = []) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'message-wrapper ' + who;
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble ' + who;
+  bubble.textContent = text;
+
+  const picker = document.createElement('div');
+  picker.className = 'reaction-picker';
+
+  const reactionBox = document.createElement('div');
+  reactionBox.className = 'reactions';
+
+  reactions.forEach(r => {
+    const span = document.createElement('span');
+    span.textContent = r;
+    reactionBox.appendChild(span);
+  });
+
+  ['❤️', '👍', '😂', '😮', '😢'].forEach(emoji => {
+    const emojiBtn = document.createElement('span');
+    emojiBtn.textContent = emoji;
+    emojiBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+
+  console.log('index=', index);
+
+  const res = await fetch(
+    `/api/chats/${currentId}/react/${index}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ emoji })
+    }
+  );
+
+  const data = await res.json();
+  console.log(data);
+  reactionBox.innerHTML = '';
+
+  data.reactions.forEach(r => {
+    const span = document.createElement('span');
+    span.textContent = r;
+    reactionBox.appendChild(span);
+  });
+});
+
+    picker.appendChild(emojiBtn);
+  });
+
+  wrapper.appendChild(picker);
+  wrapper.appendChild(bubble);
+  wrapper.appendChild(reactionBox);
+
+  messages.appendChild(wrapper);
   messages.scrollTop = messages.scrollHeight;
 }
 
@@ -286,9 +340,14 @@ async function openChat(id) {
   currentId = id;
   chatTitle.textContent = chat.title;
   messages.innerHTML = '';
-  chat.messages.forEach(turn => {
-    addBubble(turn.parts[0].text, turn.role === 'user' ? 'user' : 'bot');
-  });
+  chat.messages.forEach((turn, index) => {
+  addBubble(
+    turn.parts[0].text,
+    turn.role === 'user' ? 'user' : 'bot',
+    index,
+    turn.reactions || []
+  );
+});
   renderAll();
 }
 
@@ -425,7 +484,7 @@ async function sendMessage() {
       currentId = chat.id;
     }
 
-    addBubble(text, 'user');
+    await openChat(currentId);
     input.value = '';
 
     const res = await fetch('/api/chats/' + encodeURIComponent(currentId) + '/message', {
@@ -436,18 +495,21 @@ async function sendMessage() {
     const data = await res.json();
 
     if (!res.ok) {
-      addBubble(data.error || 'Something went wrong.', 'bot');
-    } else {
-      addBubble(data.reply, 'bot');
-      chatTitle.textContent = data.title;
-      const existing = chats.find(c => c.id === currentId);
-      if (existing) {
-        existing.title = data.title;
-        existing.updatedAt = data.updatedAt;
-      }
-      chats.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-      renderAll();
-    }
+  alert(data.error || 'Something went wrong.');
+} else {
+  await openChat(currentId);
+
+  chatTitle.textContent = data.title;
+
+  const existing = chats.find(c => c.id === currentId);
+  if (existing) {
+    existing.title = data.title;
+    existing.updatedAt = data.updatedAt;
+  }
+
+  chats.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+  renderAll();
+}
   } catch (err) {
     addBubble('Network error: ' + err.message, 'bot');
   } finally {

@@ -61,6 +61,51 @@
     @media (max-width: 700px) {
       .sidebar { width: 210px; }
     }
+    .message-wrapper {
+  position: relative;
+  width: fit-content;
+  max-width: 75%;
+}
+
+.message-wrapper.user {
+  margin-left: auto;
+}
+
+.reaction-picker {
+  display: none;
+  position: absolute;
+  top: -35px;
+  right: 0;
+  background: #35304d;
+  border: 1px solid #4a4566;
+  border-radius: 20px;
+  padding: 4px 8px;
+  gap: 8px;
+  z-index: 10;
+}
+
+.message-wrapper:hover .reaction-picker {
+  display: flex;
+}
+
+.reaction-picker span {
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.15s ease;
+}
+
+.reaction-picker span:hover {
+  transform: scale(1.2);
+}
+
+.reactions {
+  margin-top: 4px;
+  font-size: 18px;
+}
+
+.reactions span {
+  margin-right: 4px;
+}
   </style>
 </head>
 <body>
